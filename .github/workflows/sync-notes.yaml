@@ -1,0 +1,36 @@
+name: Sync Obsidian Notes
+
+on:
+  push:
+    branches:
+      - vercel # 仅在vercel部署的时候触发
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Quartz Repo
+        uses: actions/checkout@v5
+        with:
+          repository: hyperv0id/quartz
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Clone Notes Repo
+        uses: actions/checkout@v5
+        with:
+          repository: hyperv0id/cs-notes
+          path: temp-notes
+
+      - name: Sync Files
+        run: |
+          rm -rf content
+          mv temp-notes content
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content
+          git commit -m "Sync notes from obsidian" || echo "No changes to commit"
+          git push
