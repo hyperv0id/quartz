@@ -1,0 +1,679 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{ux5c42ux6b21ux5206ux6790ux6cd5}{%
+\subsection{层次分析法}\label{ux5c42ux6b21ux5206ux6790ux6cd5}}
+
+The analytic hierarchy process，简称AHP
+
+建模比赛中最基础的模型之一，主要用于解决评价类问题
+
+\textbf{例如}：选择哪种方案最好、那位员工表现更优秀、我到底是选北大还是清华
+
+\hypertarget{ux5c0fux660eux5230ux5e95ux9009ux534eux79d1ux8fd8ux662fux6b66ux5927ux5462}{%
+\subsubsection{小明到底选华科还是武大呢？}\label{ux5c0fux660eux5230ux5e95ux9009ux534eux79d1ux8fd8ux662fux6b66ux5927ux5462}}
+
+小米最关心大学里的这四个方面：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  学习氛围(占比0.4)
+\item
+  就业前景(占比0.3)
+\item
+  男女比例(占比0.2)
+\item
+  校园景色(占比0.1)
+\end{enumerate}
+
+括号内数值表示小明认为的重要性程度(权重)，和为1
+
+通过分析资料,小明分别给两所学校打了分:
+
+并列好了\textbf{权重表}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+& 指标权重 & 武大 & 华科\tabularnewline
+\midrule
+\endhead
+学习氛围 & 0.4 & 0.7 & 0.3\tabularnewline
+就业前景 & 0.3 & 0.5 & 0.5\tabularnewline
+男女比例 & 0.2 & 0.3 & 0.7\tabularnewline
+校园景色 & 0.1 & 0.25 & 0.75\tabularnewline
+\bottomrule
+\end{longtable}
+
+华科最终得分：0.515；
+
+武大最终得分：0.485；
+
+小明最后选择了华科；
+
+\hypertarget{ux53bbux65c5ux6e38}{%
+\subsubsection{去旅游}\label{ux53bbux65c5ux6e38}}
+
+填好志愿后，小明决定去旅游。查阅网上数据后，他初步选择了苏杭、北戴河、桂林三地作为目标景点。
+
+请\textbf{确定评价指标}、\textbf{形成评价体系}来为小明选择最佳方案
+
+\hypertarget{ux51c6ux5907ux5de5ux4f5c}{%
+\paragraph{准备工作}\label{ux51c6ux5907ux5de5ux4f5c}}
+
+评价类问题，首先想到：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  评价目标(选择目标景点)
+\item
+  为了达到目标有哪几种可选法案(苏杭、北戴河、桂林)
+\item
+  评价准则或者指标(根据什么评价东西好坏)
+\end{enumerate}
+
+优先在别人的论文中寻找指标，这样显得\hl{\textbf{专业}}，另外别人的研究方法也可以\emph{借鉴}
+
+卖课的推荐的一个\hl{腻害的网站}
+
+\href{https://search.chongbuluo.com/}{虫部落-快搜}：\url{https://search.chongbuluo.com/}
+
+\textbf{↓ 优先级 ↓}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  谷歌搜索(进不去就百度呗)
+\item
+  微信搜索
+\item
+  知乎搜索
+\end{enumerate}
+
+如本题可搜索关键字：旅游选择因素、根据什么选择旅游景点、旅游景点评价指标......
+
+⏩到小明选择好了一下5个指标：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  旅游景色
+\item
+  花费
+\item
+  居住环境
+\item
+  饮食情况
+\item
+  交通便利程度
+\end{enumerate}
+
+在确定影响某因素的诸因子在该因素中所占的比重时，遇到的主要困难是这些比重常常不易定量化。此外，当影响某因素的因子较多时，直接考虑各因子对该因素有多大程度的影响时，常常会因考虑不周全、顾此失彼而使决策者提出与他实际认为的重要性程度不相一致的数据，甚至有可能提出一组隐含矛盾的数据。------选自司守奎{[}kui{]}老师的《数学建模算法与应用教材》
+
+叫小明来填权重，可能他自己今天填的和明天填的不一样。
+
+一次性考虑多个指标的关系往往考虑不周，所以应该分而治之，两个两个指标相比较，最终根据两两比较推算出权重
+
+\hl{重要程度表}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+标度 & 含义\tabularnewline
+\midrule
+\endhead
+1 & 同样重要\tabularnewline
+3 & 稍微重要\tabularnewline
+5 & 明显重要\tabularnewline
+7 & 强烈重要\tabularnewline
+9 & 极端重要\tabularnewline
+2，4，6，8 & 相邻判断中间值\tabularnewline
+倒数 & A比B为3，B比A就是1/3\tabularnewline
+\bottomrule
+\end{longtable}
+
+重要性改成满意度可能更方便理解
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+& 景色 & 花费 & 居住 & 饮食 & 交通\tabularnewline
+\midrule
+\endhead
+景色 & 1 & & & &\tabularnewline
+花费 & & 1 & & &\tabularnewline
+居住 & & & 1 & &\tabularnewline
+饮食 & & & & 1 &\tabularnewline
+交通 & & & & & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+实际情况中这张表得交由专家来填
+
+不过先填了算了
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+& 景色 & 花费 & 居住 & 饮食 & 交通\tabularnewline
+\midrule
+\endhead
+景色 & 1 & 1/2 & 4 & 3 & 3\tabularnewline
+花费 & 2 & 1 & 7 & 5 & 5\tabularnewline
+居住 & 1/4 & 1/7 & 1 & 1/2 & 1/3\tabularnewline
+饮食 & 1/3 & 1/5 & 2 & 1 & 1\tabularnewline
+交通 & 1/3 & 1/5 & 3 & 1 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+表中矩阵特点(\hl{\textbf{判断矩阵}})：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  a{[}i{]} {[}j{]}表示与指标j相比i的重要程度
+\item
+  a{[}i{]} {[}i{]}=1;
+\item
+  a{[}i{]} {[}j{]} * a{[}j{]} {[}i{]} = 1;
+\end{enumerate}
+
+我们称之为\hl{正互反矩阵}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\textbf{\emph{景色}} & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+苏杭 & 1 & 2 & 5\tabularnewline
+北戴河 & 1/2 & 1 & 2\tabularnewline
+桂林 & 1/5 & 1/2 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\emph{花费} & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+苏杭 & 1 & 1/3 & 1/8\tabularnewline
+北戴河 & 3 & 1 & 1/3\tabularnewline
+桂林 & 8 & 3 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\emph{居住} & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+苏杭 & 1 & 1 & 3\tabularnewline
+北戴河 & 1 & 1 & 3\tabularnewline
+桂林 & 1/3 & 1/3 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\emph{饮食} & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+苏杭 & 1 & 3 & 4\tabularnewline
+北戴河 & 1/3 & 1 & 1\tabularnewline
+桂林 & 1/4 & 1 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\textbf{\emph{交通}} & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+苏杭 & 1 & 1 & 1/4\tabularnewline
+北戴河 & 1 & 1 & 1/4\tabularnewline
+桂林 & 4 & 4 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+但是也有可能会出现矛盾之处(不一致)
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\textbf{\emph{景色}} & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+苏杭 & 1 & 2 & \hl{1}\tabularnewline
+北戴河 & 1/2 & 1 & 2\tabularnewline
+桂林 & \hl{1} & 1/2 & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+于是我们发明了\hl{\emph{一致矩阵}}，一种特殊的正互反矩阵。
+
+a{[}i{]} {[}k{]} = a{[}i{]} {[}j{]} * a{[}j{]} {[}k{]};
+
+特性/性质：\textbf{各行各列成倍数}、
+
+注意：在使用判断矩阵求权重前，需要对其进行\textbf{\(\textcolor{Magenta}{一致性检验}\)}
+
+你的判断矩阵不可能是决定一致的，在误差不超过的情况下可以使用。
+
+引理1：
+
+\begin{itemize}
+\item
+  A为n阶方阵，r(A)=1；则A有一个特征值tr(A)，其余特征值都是0；
+\item
+  因为各行成比例，所以一致矩阵的秩一定为1；
+\end{itemize}
+
+当特征值为 n 时，对应特征向量刚好为 k{[}\(\frac{1}{a_{11}}\),
+\(\frac{1}{a_{12}}\), ..., \(\frac{1}{a_{1n}}\){]}\(^T\)
+
+引理2：
+
+\begin{itemize}
+\item
+  n阶正互反矩阵A为一致矩阵时当且仅当最大特征值 \textbf{λ\(_{max}\)=n}
+\item
+  当正互反矩阵非一致时，一定满足 \textbf{λ\(_{max}\)\textgreater n}
+\end{itemize}
+
+判断矩阵越不一致，最大特征值与n相差就越大(代码文件名：PPT\_1.m)
+
+\hypertarget{ux4e00ux81f4ux6027ux68c0ux9a8cux6b65ux9aa4}{%
+\paragraph{一致性检验步骤}\label{ux4e00ux81f4ux6027ux68c0ux9a8cux6b65ux9aa4}}
+
+1：计算一致性指标CI：
+
+\(\textcolor{red}{{CI}=\frac{λ_{max}-n}{n-1}}\)
+
+2：查找对应\(\textcolor{green}{平均随机一致性指标RI}\)
+
+\begin{longtable}[]{@{}llllllllllllllll@{}}
+\toprule
+n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 &
+15\tabularnewline
+\midrule
+\endhead
+RI & 0 & 0 & 0.52 & 0.89 & 1.12 & 1.26 & 1.36 & 1.41 & 1.46 & 1.49 &
+1.52 & 1.54 & 1.56 & 1，58 & 1.59\tabularnewline
+\bottomrule
+\end{longtable}
+
+注：实际应用中，n很少超过10，如超过10，则需考虑二级指标体系
+
+3：计算\(\textcolor{red}{一致性比例CR}\)
+
+\({CR}=\frac{CI}{RI}\)
+
+若CR \textless{} 0.1,
+则可认为判断矩阵的一致性可接受；否则需要对其进行修正
+
+RI来自随机的500个样本矩阵，求最大特征根的平均值\({{λ^*}_{max}}\)
+，并定义
+
+\({RI}={\frac{{λ^*}_{max}-n}{n-1}}\),
+这是作者通过\textbf{蒙特卡罗模拟}得到的最佳方案
+
+\hypertarget{ux8ba1ux7b97ux6743ux91cd}{%
+\paragraph{计算权重}\label{ux8ba1ux7b97ux6743ux91cd}}
+
+权重归一化处理：
+
+3种方法：
+
+1.算数平均值(每个元素除以所在列的和 )
+
+求得的权重向量为：\(ω_i={\frac{1}{n}}{\sum_{j=1}^n\frac{a_{ij}}{\sum_{k=1}^na_{kj}}}\)
+
+2.几何平均值
+
+求得的权重向量为：\(ω_i= \frac{(\prod{_{j=1}^n{a_{ij}}})^{\frac{1}{n}}}{(\prod{_{j=1}^n{a_{kj}}})^{\frac{1}{n}}}\)
+
+3.特征值法求权重
+
+first. 求出A最大特征值以及其特征向量
+
+second. 对求出特征向量归一化即可得到我们的权重
+
+ps:获奖论文一般\textbf{只留下了特征法的权重}
+
+⏩ing
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+& 权重 & 苏杭 & 北戴河 & 桂林\tabularnewline
+\midrule
+\endhead
+景色 & 0.2636 & 0.5954 & 0.2764 & 0.1283\tabularnewline
+花费 & 0.4758 & 0.0819 & 0.2363 & 0.6817\tabularnewline
+居住 & 0.0538 & 0.4286 & 0.4686 & 0.1429\tabularnewline
+饮食 & 0.0981 & 0.6337 & 0.1919 & 0.1744\tabularnewline
+交通 & 0.1087 & 0.1667 & 0.1667 & 0.6667\tabularnewline
+计算结果 & & 0.2993 & 0.24530 & 0.45544\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{ux5c40ux9650ux6027}{%
+\subsubsection{局限性}\label{ux5c40ux9650ux6027}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  评价的决策层不能太多，最多为15
+\item
+  如果决策层中指标已知，那么我们得用到TOPSIS方法
+\end{enumerate}
+
+\hypertarget{topsisux65b9ux6cd5}{%
+\subsection{TOPSIS方法}\label{topsisux65b9ux6cd5}}
+
+Technique for Order Preference by Similarity of Ideal Solution
+
+逼近理想解排序法，简称优劣解距离法。
+
+其能充分利用原始数据的信息，其结果能精确地反映评价方案之间的差距
+
+小例子：
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+姓名 & 成绩\tabularnewline
+\midrule
+\endhead
+张三 & 89\tabularnewline
+李四 & 60\tabularnewline
+王五 & 74\tabularnewline
+赵六 & 99\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+姓名 & 成绩 & 排名 & 修正排名 & 评分\tabularnewline
+\midrule
+\endhead
+张三 & 89 & 2 & 3 & 3/10=0.3\tabularnewline
+李四 & 60 & 4 & 1 & 1/10=0.1\tabularnewline
+王五 & 74 & 3 & 2 & 2/10=0.2\tabularnewline
+赵六 & 99 & 1 & 4 & 4/10=0.4\tabularnewline
+\bottomrule
+\end{longtable}
+
+但是假如李四考了3分，赵六考了90分，评分还是不变。
+
+可以进行如下处理：
+
+最高成绩max：99
+
+最低成绩：60
+
+构造评分公式：\(\textcolor{red}{\frac{x-min}{max-min}}\)
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+姓名 & 成绩 & 未归一评分 & 归一后评分\tabularnewline
+\midrule
+\endhead
+张三 & 89 & 0.74 & 0.35\tabularnewline
+李四 & 60 & 0 & 0\tabularnewline
+王五 & 74 & 0.36 & 0.17\tabularnewline
+赵六 & 99 & 1 & 0.48\tabularnewline
+\bottomrule
+\end{longtable}
+
+或者用卷面极值处理：
+
+评分公式：\textbf{\(\textcolor{red}{\frac{x}{总分}}\)}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+姓名 & 成绩 & Beat评分 & 评分\tabularnewline
+\midrule
+\endhead
+张三 & 89 & 0.89 & 0.28\tabularnewline
+李四 & 60 & 0.60 & 0.19\tabularnewline
+王五 & 74 & 0.74 & 0.23\tabularnewline
+赵六 & 99 & 0.99 & 0.30\tabularnewline
+\bottomrule
+\end{longtable}
+
+但是此方法其存在一下缺陷：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  很多指标\textbf{不存在理论上的最大最小值}，例如衡量经济增长指标：GDP增速
+\item
+  比较对象一般远大于2个
+\item
+  比较指标往往不只是一个方面的，例如成绩、工时数、课外竞赛得分...
+\end{enumerate}
+
+从
+
+\emph{综合下来还是前者更优}
+
+增加指标
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+姓名 & 成绩 & 迟到次数\tabularnewline
+\midrule
+\endhead
+张三 & 89 & 2\tabularnewline
+李四 & 60 & 0\tabularnewline
+王五 & 74 & 1\tabularnewline
+赵六 & 99 & 3\tabularnewline
+\bottomrule
+\end{longtable}
+
+成绩\hl{越大越好}，这样的指标称之为\hl{极大型指标}(效益性指标)
+
+迟到次数\hl{越少越好}，这样的指标称之为\hl{极小型指标}(成本型指标)
+
+\hypertarget{ux5c06ux539fux59cbux77e9ux9635ux6b63ux5411ux5316}{%
+\subsubsection{将原始矩阵正向化}\label{ux5c06ux539fux59cbux77e9ux9635ux6b63ux5411ux5316}}
+
+在建模过程中我们得将\emph{极小型指标}转换为\emph{极大型指标}，
+
+称为\hl{指标正向化}，公式为\(\textcolor{red}{max-x}\)
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+姓名 & 成绩 & 正向化后迟到次数\tabularnewline
+\midrule
+\endhead
+张三 & 89 & 1\tabularnewline
+李四 & 60 & 3\tabularnewline
+王五 & 74 & 2\tabularnewline
+赵六 & 99 & 0\tabularnewline
+\bottomrule
+\end{longtable}
+
+常见的4种指标：
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+指标名称 & 指标特点 & 粒子\tabularnewline
+\midrule
+\endhead
+极大型 & 越大越好 & GDP增速、成绩\tabularnewline
+极小型 & 越少越好 & 费用、污染程度\tabularnewline
+中间型 & 越趋近于某个值越好 & 水PH\tabularnewline
+区间型 & 落在某个区间最好 & 稳态、\tabularnewline
+\bottomrule
+\end{longtable}
+
+所谓将\textbf{原始矩阵正向化}，就是将指标类型\textbf{统一为}极大型指标
+
+转换方法：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  极小型
+
+  \[\textcolor{red}{\frac{x-min}{max-min}}(推荐)\\
+  max-x 或 \frac{1}{x} (当元素全为正数时)\]
+\item
+  中间型
+
+  \[\textcolor{red}{M = max\{|x_i - x_{best}|\}}\\
+  \textcolor{red}{x_i = 1-\frac{|x_i - x_{best}|}{M}}\]
+\item
+  区间型
+
+  \[\textcolor{red}{M = max\{a-min\{x_i\}, max\{x_i\}-b\}}  , 
+  \\
+  \textcolor{red}{x_i=\begin{cases} 1-\frac{a-x}{M}, x<a\\1,\ a\leq x\leq b \\ 1-\frac{x-b}{M}， x>b\end{cases} }\]
+\end{enumerate}
+
+\hypertarget{ux5c06ux6b63ux5411ux77e9ux9635ux6807ux51c6ux5316}{%
+\subsubsection{将正向矩阵标准化}\label{ux5c06ux6b63ux5411ux77e9ux9635ux6807ux51c6ux5316}}
+
+为了消去\textbf{不同量纲}的影响，需要对其进行\hl{标准化处理}：
+
+假设有\(n\)个要评价对象，\(m\)个评价指标构成的正向化矩阵长这样：
+
+\[X = \left[ \matrix{  x_{11} & x_{12} & \cdots & x_{1m} \\   x_{21} & x_{22} & \cdots & x_{2m}\\ \dots \\ x_{n1} & x_{n2} & \cdots & x_{nm}} \right]\]
+
+那么，对其标准化的矩阵记为\(Z\),
+\(Z\)中每个元素\(\textcolor{red}{Z_{ij} = \frac{x_{ij}}{\sqrt{\sum_{i=1}^n x_{ij}^2}}}\)
+
+\( \left[ \matrix{89 & 1 \\ 60 & 3 \\ 74 & 2 \\ 99 & 0} \right] 经过标准化就变成了：	 \left[ \matrix{0.5438 & 0.2673 \\ 0.3665 & 0.8018 \\ 0.4520 & 0.5345 \\ 0.6408 & 0} \right] \)
+
+只有一个指标时，评分公式：\(\textcolor{red}{\frac{x-min}{max-min}}\)
+相当于 \(\textcolor{red}{\frac{x-min}{(max-x)+(x-min)}}\) 即
+\(\textcolor{red}{\frac{x-min}{与最大值距离 + 与最小值距离}}\)
+
+当有\(n\)个评价对象时，\(m\)个标准指标的标准化矩阵：
+
+\[Z = \left[ \matrix{  z_{11} & z_{12} & \cdots & z_{1m} \\   z_{21} & z_{22} & \cdots & z_{2m}\\ \dots \\ z_{n1} & z_{n2} & \cdots & z_{nm}} \right]\]
+
+\hypertarget{ux8ba1ux7b97ux5f97ux5206ux5e76ux5f52ux4e00ux5316}{%
+\subsubsection{计算得分并归一化}\label{ux8ba1ux7b97ux5f97ux5206ux5e76ux5f52ux4e00ux5316}}
+
+定义最大值：
+
+\(Z^+ = (Z_1^+,Z_2^+,...,Z_n^+) \\\quad=(max\{z_{11}，z_{21},...,z_{n1}\}, max\{z_{12}，z_{22},...,z_{n2}\},...,max\{z_{1m}，z_{2m},...,z_{nm}\},)\)
+
+定义最小值：
+
+\(Z^- = (Z_1^-,Z_2^-,...,Z_n^-) \\\quad=(min\{z_{11}，z_{21},...,z_{n1}\}, min\{z_{12}，z_{22},...,z_{n2}\},..., min\{z_{1m}，z_{2m},...,z_{nm}\},)\)
+
+定义第 \(i(i=1,2,...,n)\) 个评价对象与最大值距离
+\(\textcolor{red}{D_i^+ = \sqrt{\sum_{j=1}^n (Z_{j}^+ - z_{ij})^2}}\)
+
+定义第 \(i(i=1,2,...,n)\) 个评价对象与最小值距离
+\(\textcolor{red}{D_i^- = \sqrt{\sum_{j=1}^n (Z_{j}^- - z_{ij})^2}}\)
+
+那么我们可以计算出第 \(i\)
+个评价对象未归一化得分：\(\textcolor{red}{S_i = \frac{D_i^-}{D_i^+ + D_i^-}}\)
+
+很明显 \(0\leq S_i\leq 1\) 且 \(S_i\) 越大 \(D_i\) 越小，即越接近最大值
+
+\begin{longtable}[]{@{}lllll@{}}
+\toprule
+name & \(D^+\) & \(D^-\) & 归一化后得分 & 排名\tabularnewline
+\midrule
+\endhead
+张三 & 0.5380 & 0.3206 & 0.1857 & 3\tabularnewline
+李四 & 0.2382 & 0.8018 & 0.3834 & 1\tabularnewline
+王五 & 0.3078 & 0.5413 & 0.3170 & 2\tabularnewline
+赵六 & 0.8018 & 0.2382 & 0.1139 & 4\tabularnewline
+\bottomrule
+\end{longtable}
+
+赵六明明考了第一, 为什么评分是倒数呢?
+
+因为分数和迟到次数权重相同，so，我们应该给不同指标分配不同的权重\(\omega_j\)，其满足\(\sum_{j=1}^m\omega_j = 1\)
+
+重新定义第 \(i(i=1,2,...,n)\) 个评价对象与最大值距离
+\(\textcolor{red}{D_i^+ = \sqrt{\sum_{j=1}^m \omega_j(Z_{j}^+ - z_{ij})^2}}\)
+
+重新定义第 \(i(i=1,2,...,n)\) 个评价对象与最小值距离
+\(\textcolor{red}{D_i^- = \sqrt{\sum_{j=1}^m \omega_j(Z_{j}^- - z_{ij})^2}}\)
+
+\hypertarget{ux7ec3ux4e60ux9898}{%
+\subsection{练习题}\label{ux7ec3ux4e60ux9898}}
+
+\begin{figure}
+\centering
+\includegraphics{https://raw.githubusercontent.com/hooooolyshit/Pictures/main/imgs/数学建模/清风_河流分析作业}
+\caption{}
+\end{figure}
+
+\end{document}
