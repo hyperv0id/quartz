@@ -1,10 +1,9 @@
 name: Sync Obsidian Notes
 
 on:
-  push:
-    branches:
-      - vercel # 仅在vercel部署的时候触发
-  workflow_dispatch: # 允许手动触发
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   sync:
@@ -16,22 +15,29 @@ jobs:
           repository: hyperv0id/quartz
           token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
-      - name: Clone Notes Repo
+      - name: Clone Latest Notes Repo
         uses: actions/checkout@v5
         with:
           repository: hyperv0id/cs-notes
           path: temp-notes
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
 
       - name: Sync Files
         run: |
           rm -rf content
           mv temp-notes content
-          mv content/README.md content/index.md
+          if [ -f content/README.md ]; then
+            mv content/README.md content/index.md
+          fi
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add content
-          git commit -m "Sync notes from obsidian" || echo "No changes to commit"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit. Notes are up-to-date."
+          else
+            git commit -m "Scheduled sync: Update notes from cs-notes repo"
+            git push
+          fi
