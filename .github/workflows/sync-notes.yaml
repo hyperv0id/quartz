@@ -26,6 +26,7 @@ jobs:
         run: |
           rm -rf content
           mv temp-notes content
+          mv content/README.md content/index.md
 
       - name: Commit and Push Changes
         run: |
