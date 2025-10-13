@@ -1,0 +1,47 @@
+name: Sync CS-Notes
+
+on:
+  push:
+    branches:
+      - vercel
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Quartz Repo
+        uses: actions/checkout@v5
+        with:
+          repository: hyperv0id/quartz
+          ref: vercel
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Clone Latest Notes Repo
+        uses: actions/checkout@v5
+        with:
+          repository: hyperv0id/cs-notes
+          path: temp-notes
+          token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+
+      - name: Sync Files
+        run: |
+          rm -rf content
+          mv temp-notes content
+          if [ -f content/README.md ]; then
+            mv content/README.md content/index.md
+          fi
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add content
+          if git diff --staged --quiet; then
+            echo "No changes to commit. Notes are up-to-date."
+          else
+            git commit -m "Scheduled sync: Update notes from cs-notes repo"
+            git push
+          fi
